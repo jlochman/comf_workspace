@@ -5,23 +5,23 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import cz.jlochman.comfigo.core.DAO.ProductDAO;
-import cz.jlochman.comfigo.core.DAO.FigureDAO;
+import cz.jlochman.comfigo.core.DAO.ImageDAO;
 import cz.jlochman.comfigo.core.DAO.ParameterDAO;
 import cz.jlochman.comfigo.core.DAO.database.ProductDatabaseDAO;
-import cz.jlochman.comfigo.core.DAO.database.FigureDatabaseDAO;
+import cz.jlochman.comfigo.core.DAO.database.ImageDatabaseDAO;
 import cz.jlochman.comfigo.core.DAO.database.ParameterDatabaseDAO;
 
 public class DAOSingleton {
 
 	private EntityManagerFactory emf;
-	private FigureDAO figureDAO;
+	private ImageDAO imageDAO;
 	private ParameterDAO parameterDAO;
 	private ProductDAO productDAO;
 	
 	public DAOSingleton() {
 		emf = Persistence.createEntityManagerFactory("comfigoDB");
 		productDAO = new ProductDatabaseDAO();
-		figureDAO = new FigureDatabaseDAO();
+		imageDAO = new ImageDatabaseDAO();
 		parameterDAO = new ParameterDatabaseDAO();
 	}
 	
@@ -33,8 +33,8 @@ public class DAOSingleton {
 		return productDAO;
 	}
 
-	public FigureDAO getFigureDAO() {
-		return figureDAO;
+	public ImageDAO getImageDAO() {
+		return imageDAO;
 	}
 
 	public ParameterDAO getParameterDAO() {

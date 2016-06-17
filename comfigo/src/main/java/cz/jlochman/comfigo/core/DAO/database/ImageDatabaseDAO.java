@@ -6,17 +6,17 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import cz.jlochman.comfigo.core.ServiceLocator;
-import cz.jlochman.comfigo.core.DAO.ParameterDAO;
-import cz.jlochman.comfigo.core.entityDomain.Parameter;
+import cz.jlochman.comfigo.core.DAO.ImageDAO;
+import cz.jlochman.comfigo.core.entityDomain.Image;
 
-public class ParameterDatabaseDAO implements ParameterDAO {
-	
+public class ImageDatabaseDAO implements ImageDAO {
+
 	@SuppressWarnings("unchecked")
-	public List<Parameter> getAllParameters() {
+	public List<Image> getAllImages() {
 		EntityManager em = ServiceLocator.getInstance().getDaos().getEntityManager();
-		List<Parameter> list = new ArrayList<Parameter>();
+		List<Image> list = new ArrayList<Image>();
 		try {
-			list = em.createQuery("FROM Parameter par ORDER BY par.id ").getResultList();
+			list = em.createQuery("FROM Image img ORDER BY img.id ").getResultList();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -24,5 +24,5 @@ public class ParameterDatabaseDAO implements ParameterDAO {
 		}
 		return list;
 	}
-	
+
 }

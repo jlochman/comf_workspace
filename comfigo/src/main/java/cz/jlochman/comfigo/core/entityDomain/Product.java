@@ -10,8 +10,10 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
+
 @Entity
-@Table(name = "CHAIR")
+@Table(name = "PRODUCT")
 public class Product extends PersistenceObject {
 
 	@Column(name = "URL")
@@ -21,16 +23,17 @@ public class Product extends PersistenceObject {
 	private String name;
 	
 	@Column(name = "DESCRIPTION")
+	@Type(type="text")
 	private String description;
 	
 	@Column(name = "DOWNLOAD_DATE")
 	private Date downloadDate;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "chair", fetch = FetchType.EAGER)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "product", fetch = FetchType.EAGER)
 	private List<Parameter> parameters;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "chair", fetch = FetchType.EAGER)
-	private List<Figure> figures;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "product", fetch = FetchType.EAGER)
+	private List<Image> images;
 
 	public String getUrl() {
 		return url;
@@ -72,12 +75,12 @@ public class Product extends PersistenceObject {
 		this.parameters = parameters;
 	}
 
-	public List<Figure> getFigures() {
-		return figures;
+	public List<Image> getImages() {
+		return images;
 	}
 
-	public void setFigures(List<Figure> figures) {
-		this.figures = figures;
+	public void setImages(List<Image> images) {
+		this.images = images;
 	}
 	
 }

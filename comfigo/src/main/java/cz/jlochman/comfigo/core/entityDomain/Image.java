@@ -9,17 +9,20 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "FIGURE")
-public class Figure extends PersistenceObject {
+public class Image extends PersistenceObject {
 
 	@Column(name = "URL")
 	private String url;
-	
+
 	@Column(name = "PATH")
 	private String path;
-	
+
+	@Column(name = "MD5")
+	private String md5;
+
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "CHAIR_ID")
-	private Product chair;
+	@JoinColumn(name = "PRODUCT_ID")
+	private Product product;
 
 	public String getUrl() {
 		return url;
@@ -37,13 +40,20 @@ public class Figure extends PersistenceObject {
 		this.path = path;
 	}
 
-	public Product getChair() {
-		return chair;
+	public String getMd5() {
+		return md5;
 	}
 
-	public void setChair(Product chair) {
-		this.chair = chair;
+	public void setMd5(String md5) {
+		this.md5 = md5;
 	}
-	
-	
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
 }
