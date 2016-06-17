@@ -1,5 +1,5 @@
 package cz.jlochman.comfigo.core.DAO;
 
-public interface ChairDAO {
+public interface ProductDAO {
 
 }

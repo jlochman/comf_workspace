@@ -19,7 +19,7 @@ public class Figure extends PersistenceObject {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "CHAIR_ID")
-	private Chair chair;
+	private Product chair;
 
 	public String getUrl() {
 		return url;
@@ -37,11 +37,11 @@ public class Figure extends PersistenceObject {
 		this.path = path;
 	}
 
-	public Chair getChair() {
+	public Product getChair() {
 		return chair;
 	}
 
-	public void setChair(Chair chair) {
+	public void setChair(Product chair) {
 		this.chair = chair;
 	}
 	

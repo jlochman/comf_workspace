@@ -1,5 +1,6 @@
 package cz.jlochman.comfigo.core.entityDomain;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "CHAIR")
-public class Chair extends PersistenceObject {
+public class Product extends PersistenceObject {
 
 	@Column(name = "URL")
 	private String url;
@@ -21,6 +22,9 @@ public class Chair extends PersistenceObject {
 	
 	@Column(name = "DESCRIPTION")
 	private String description;
+	
+	@Column(name = "DOWNLOAD_DATE")
+	private Date downloadDate;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "chair", fetch = FetchType.EAGER)
 	private List<Parameter> parameters;
@@ -50,6 +54,14 @@ public class Chair extends PersistenceObject {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Date getDownloadDate() {
+		return downloadDate;
+	}
+
+	public void setDownloadDate(Date downloadDate) {
+		this.downloadDate = downloadDate;
 	}
 
 	public List<Parameter> getParameters() {

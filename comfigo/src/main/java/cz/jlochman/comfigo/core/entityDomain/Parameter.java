@@ -19,7 +19,7 @@ public class Parameter extends PersistenceObject {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "CHAIR_ID")
-	private Chair chair;
+	private Product chair;
 
 	public String getName() {
 		return name;
@@ -37,11 +37,11 @@ public class Parameter extends PersistenceObject {
 		this.value = value;
 	}
 
-	public Chair getChair() {
+	public Product getChair() {
 		return chair;
 	}
 
-	public void setChair(Chair chair) {
+	public void setChair(Product chair) {
 		this.chair = chair;
 	}
 
