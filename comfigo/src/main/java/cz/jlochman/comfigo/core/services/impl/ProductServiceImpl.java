@@ -1,5 +1,6 @@
 package cz.jlochman.comfigo.core.services.impl;
 
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -18,8 +19,7 @@ import cz.jlochman.comfigo.core.services.ProductService;
 public class ProductServiceImpl implements ProductService {
 
 	private Date downloadDate;
-	private ProductDAO productDAO = ServiceLocator.getInstance().getDaos()
-			.getProductDAO();
+	private ProductDAO productDAO = ServiceLocator.getInstance().getDaos().getProductDAO();
 
 	public ProductServiceImpl() {
 		downloadDate = new Date();
@@ -29,14 +29,11 @@ public class ProductServiceImpl implements ProductService {
 		Product product = new Product();
 		product.setDownloadDate(downloadDate);
 
-		Element productEssential = htmlPage.select("div.product-essential")
-				.first();
+		Element productEssential = htmlPage.select("div.product-essential").first();
 
-		product.setName(productEssential.select("div.product-name").first()
-				.text());
+		product.setName(productEssential.select("div.product-name").first().text());
 		System.out.println("product name: " + product.getName());
-		product.setDescription(productEssential.select("div.std").first()
-				.text());
+		product.setDescription(productEssential.select("div.std").first().text());
 		System.out.println("product description: " + product.getDescription());
 		product.setUrl(htmlPage.baseUri());
 
@@ -54,13 +51,11 @@ public class ProductServiceImpl implements ProductService {
 		product.setParameters(parameters);
 
 		List<Image> images = new ArrayList<Image>();
-		Element productImages = productEssential.select("div.more-views")
-				.first();
+		Element productImages = productEssential.select("div.more-views").first();
 		Elements imgLinks = productImages.select("a");
 		for (Element element : imgLinks) {
 			String imgUrl = element.attr("abs:href");
-			Image img = ServiceLocator.getInstance().getImageService()
-					.getImageFromURL(imgUrl);
+			Image img = ServiceLocator.getInstance().getImageService().getImageFromURL(imgUrl);
 			img.setProduct(product);
 			images.add(img);
 			System.out.println("image url: " + imgUrl);
@@ -87,6 +82,10 @@ public class ProductServiceImpl implements ProductService {
 
 	public List<Product> getProductsForDownDate(Date downDate) {
 		return productDAO.getProductsForDownDate(downDate);
+	}
+
+	public String getNormalizedName(Product product) {
+		return Normalizer.normalize(product.getName(), Normalizer.Form.NFD);
 	}
 
 }

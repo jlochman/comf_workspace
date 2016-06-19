@@ -20,8 +20,7 @@ public class UrlServiceImpl implements UrlService {
 	public List<String> getProductURLs() {
 		List<String> list = null;
 		try {
-			list = Files.readAllLines(Paths.get(INPUT_FILE_NAME),
-					Charset.forName("UTF-8"));
+			list = Files.readAllLines(Paths.get(INPUT_FILE_NAME), Charset.forName("UTF-8"));
 			Iterator<String> iterator = list.iterator();
 			while (iterator.hasNext()) {
 				if (!UrlValidator.getInstance().isValid(iterator.next()))
@@ -53,8 +52,7 @@ public class UrlServiceImpl implements UrlService {
 		try {
 			return Jsoup.connect(url).timeout(timeoutSec * 1000).get();
 		} catch (IOException e) {
-			System.out.println(url + " not loaded with timeout = " + timeoutSec
-					+ " sec");
+			System.out.println(url + " not loaded with timeout = " + timeoutSec + " sec");
 			return null;
 		}
 	}

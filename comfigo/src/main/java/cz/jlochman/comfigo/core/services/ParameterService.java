@@ -7,5 +7,5 @@ import cz.jlochman.comfigo.core.entityDomain.Parameter;
 public interface ParameterService {
 
 	public List<Parameter> getAllParameters();
-	
+
 }

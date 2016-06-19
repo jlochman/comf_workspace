@@ -17,14 +17,14 @@ public class DAOSingleton {
 	private ImageDAO imageDAO;
 	private ParameterDAO parameterDAO;
 	private ProductDAO productDAO;
-	
+
 	public DAOSingleton() {
 		emf = Persistence.createEntityManagerFactory("comfigoDB");
 		productDAO = new ProductDatabaseDAO();
 		imageDAO = new ImageDatabaseDAO();
 		parameterDAO = new ParameterDatabaseDAO();
 	}
-	
+
 	public EntityManager getEntityManager() {
 		return emf.createEntityManager();
 	}
@@ -40,5 +40,5 @@ public class DAOSingleton {
 	public ParameterDAO getParameterDAO() {
 		return parameterDAO;
 	}
-	
+
 }

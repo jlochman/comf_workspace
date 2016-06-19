@@ -18,20 +18,20 @@ public class Product extends PersistenceObject {
 
 	@Column(name = "URL")
 	private String url;
-	
+
 	@Column(name = "NAME")
 	private String name;
-	
+
 	@Column(name = "DESCRIPTION")
-	@Type(type="text")
+	@Type(type = "text")
 	private String description;
-	
+
 	@Column(name = "DOWNLOAD_DATE")
 	private Date downloadDate;
-	
+
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "product", fetch = FetchType.EAGER)
 	private List<Parameter> parameters;
-	
+
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "product", fetch = FetchType.EAGER)
 	private List<Image> images;
 
@@ -82,5 +82,5 @@ public class Product extends PersistenceObject {
 	public void setImages(List<Image> images) {
 		this.images = images;
 	}
-	
+
 }

@@ -10,7 +10,7 @@ public interface ProductDAO {
 	public List<Product> getAllProducts();
 
 	public List<Date> getAllDownDates();
-	
+
 	public List<Product> getProductsForDownDate(Date downDate);
 	
 }

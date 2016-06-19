@@ -2,6 +2,12 @@ package cz.jlochman.comfigo.core.services.impl;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
@@ -28,6 +34,11 @@ public class FileServiceImpl implements FileService {
 			extension = fileName.substring(fileName.lastIndexOf("."));
 		}
 		return extension;
+	}
+
+	public void saveListToFile(List<String> list, String path) throws IOException {
+		Path file = Paths.get(path);
+		Files.write(file, list, Charset.forName("UTF-8"));
 	}
 
 }

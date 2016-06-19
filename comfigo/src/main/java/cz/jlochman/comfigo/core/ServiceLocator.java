@@ -1,10 +1,12 @@
 package cz.jlochman.comfigo.core;
 
+import cz.jlochman.comfigo.core.services.ExportService;
 import cz.jlochman.comfigo.core.services.FileService;
 import cz.jlochman.comfigo.core.services.ImageService;
 import cz.jlochman.comfigo.core.services.ParameterService;
 import cz.jlochman.comfigo.core.services.ProductService;
 import cz.jlochman.comfigo.core.services.UrlService;
+import cz.jlochman.comfigo.core.services.impl.ExportServiceImpl;
 import cz.jlochman.comfigo.core.services.impl.FileServiceImpl;
 import cz.jlochman.comfigo.core.services.impl.ImageServiceImpl;
 import cz.jlochman.comfigo.core.services.impl.ParameterServiceImpl;
@@ -21,14 +23,19 @@ public class ServiceLocator {
 	private ProductService productService;
 	private UrlService urlService;
 	private FileService fileService;
+	private ExportService exportService;
 
 	private ServiceLocator() {
+	}
+
+	public void initializeService() {
 		daos = new DAOSingleton();
 		productService = new ProductServiceImpl();
 		imageService = new ImageServiceImpl();
 		parameterService = new ParameterServiceImpl();
 		urlService = new UrlServiceImpl();
 		fileService = new FileServiceImpl();
+		exportService = new ExportServiceImpl();
 	}
 
 	public static ServiceLocator getInstance() {
@@ -60,6 +67,10 @@ public class ServiceLocator {
 
 	public FileService getFileService() {
 		return fileService;
+	}
+
+	public ExportService getExportService() {
+		return exportService;
 	}
 
 }

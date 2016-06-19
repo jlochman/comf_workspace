@@ -15,12 +15,10 @@ public class ProductDatabaseDAO implements ProductDAO {
 
 	@SuppressWarnings("unchecked")
 	public List<Product> getAllProducts() {
-		EntityManager em = ServiceLocator.getInstance().getDaos()
-				.getEntityManager();
+		EntityManager em = ServiceLocator.getInstance().getDaos().getEntityManager();
 		List<Product> list = new ArrayList<Product>();
 		try {
-			list = em.createQuery("FROM Product prod ORDER BY prod.id ")
-					.getResultList();
+			list = em.createQuery("FROM Product prod ORDER BY prod.id ").getResultList();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -31,13 +29,10 @@ public class ProductDatabaseDAO implements ProductDAO {
 
 	@SuppressWarnings("unchecked")
 	public List<Date> getAllDownDates() {
-		EntityManager em = ServiceLocator.getInstance().getDaos()
-				.getEntityManager();
+		EntityManager em = ServiceLocator.getInstance().getDaos().getEntityManager();
 		List<Date> list = new ArrayList<Date>();
 		try {
-			list = em
-					.createQuery(
-							"SELECT DISTINCT prod.downloadDate FROM Product prod ORDER BY prod.downloadDate ")
+			list = em.createQuery("SELECT DISTINCT prod.downloadDate FROM Product prod ORDER BY prod.downloadDate ")
 					.getResultList();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -49,8 +44,7 @@ public class ProductDatabaseDAO implements ProductDAO {
 
 	@SuppressWarnings("unchecked")
 	public List<Product> getProductsForDownDate(Date downDate) {
-		EntityManager em = ServiceLocator.getInstance().getDaos()
-				.getEntityManager();
+		EntityManager em = ServiceLocator.getInstance().getDaos().getEntityManager();
 		List<Product> list = new ArrayList<Product>();
 		try {
 			Query query = em.createQuery("FROM Product prod WHERE prod.downloadDate = :downDate ORDER BY prod.id ");
